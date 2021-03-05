@@ -2,5 +2,5 @@ install:
 	pip install --target ./package pymysql
 
 publish: install
-	zip -r ../my-deployment-package.zip ./package
-	zip -g my-deployment-package.zip app.py
+	zip -r ../function.zip ./package
+	zip -g function.zip app.py

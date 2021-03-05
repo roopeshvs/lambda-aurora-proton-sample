@@ -1,6 +1,6 @@
 import sys
 import logging
-import pymysql
+from package import pymysql
 import os
 #rds settings
 rds_host  = os.environ['DB_ENDPOINT']

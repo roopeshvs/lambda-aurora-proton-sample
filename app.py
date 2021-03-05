@@ -7,7 +7,7 @@ rds_host  = os.environ['DB_ENDPOINT']
 name = os.environ['DB_USERNAME']
 password = os.environ['DB_PASSWORD']
 db_name = os.environ['DB_NAME']
-db_port = os.environ['DB_PORT']
+db_port = int(os.environ['DB_PORT'])
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)

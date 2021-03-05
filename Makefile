@@ -3,4 +3,4 @@ install:
 
 publish: install
 	cd ./package; zip -r ../function.zip .
-	cd ..; zip -g function.zip app.py
+	zip -g function.zip app.py

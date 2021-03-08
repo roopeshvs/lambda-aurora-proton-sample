@@ -14,7 +14,7 @@ logger.setLevel(logging.INFO)
 
 try:
     conn = pymysql.connect(host=rds_host, port=db_port, user=name, passwd=password, connect_timeout=5)
-    conn.cursor().execute('create database if not exists' + db_name)
+    conn.cursor().execute('create database if not exists ' + db_name)
     conn.select_db(db_name)
 except pymysql.MySQLError as e:
     logger.error("ERROR: Unexpected error: Could not connect to MySQL instance.")

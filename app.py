@@ -14,7 +14,7 @@ logger.setLevel(logging.INFO)
 
 try:
     conn = pymysql.connect(host=rds_host, port=db_port, user=name, passwd=password, connect_timeout=5)
-    conn.cursor().execute('create database ' + db_name)
+    conn.cursor().execute('create database if not exists' + db_name)
     conn.select_db(db_name)
 except pymysql.MySQLError as e:
     logger.error("ERROR: Unexpected error: Could not connect to MySQL instance.")
@@ -30,10 +30,10 @@ def handler(event, context):
     item_count = 0
 
     with conn.cursor() as cur:
-        cur.execute("create table if not exists " + db_name + ".Employee ( EmpID  int NOT NULL, Name varchar(255) NOT NULL, PRIMARY KEY (EmpID))")
-        cur.execute('insert into Employee (EmpID, Name) values(1, "Joe")')
-        cur.execute('insert into Employee (EmpID, Name) values(2, "Bob")')
-        cur.execute('insert into Employee (EmpID, Name) values(3, "Mary")')
+        cur.execute("create table if not exists " + db_name + ".Employee ( EmpID  int NOT NULL auto_increment, Name varchar(255) NOT NULL, PRIMARY KEY (EmpID))")
+        cur.execute('insert into Employee (Name) values("Joe")')
+        cur.execute('insert into Employee (Name) values("Bob")')
+        cur.execute('insert into Employee (Name) values("Mary")')
         conn.commit()
         cur.execute("select * from Employee")
         for row in cur:
